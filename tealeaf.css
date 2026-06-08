@@ -1,0 +1,183 @@
+.tealeaf {
+  width:var(--w);
+  height:var(--h);
+  border:var(--br1);
+  outline:var(--br2);
+  margin: 5px auto;
+  position:relative;
+  font:var(--txs) var(--txf);
+  text-shadow:var(--txsw);
+  color:var(--txc);
+  text-transform:var(--txt);
+  background:var(--bc0);
+  transition:outline ease 3s;  
+  & br {
+    display:none;
+  }
+  &::selection {
+    background:var(--ac1);
+    text-shadow:none;
+  }
+  & > div {
+    position:absolute;
+    inset:0;
+    padding:var(--p);
+    &::before {
+      content:'';
+      position:absolute;
+      inset:0;
+      transition:2s ease 0s;
+      z-index:1;
+      pointer-events:none;
+    }
+  }
+  & > div:first-of-type {
+    z-index:5;
+    overflow:hidden;
+    transition:outline ease 3s;
+    outline:var(--br2);
+    &::before {
+      display:none;
+      background:var(--fl1);
+      mix-blend-mode:var(--fle1);
+      backdrop-filter:var(--fil1);
+    }
+    & > u {
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      &::before, &::after {
+        content:'';
+        position:absolute;
+        width:100%;
+        height:100%;
+        background-color:var(--fl1);
+        background-image:var(--bc1);
+        background-size:cover;
+        background-position:center;
+        background-blend-mode:var(--fle1);
+        transition:ease 3s;
+        z-index:1;
+      }
+      &:first-of-type::before {
+        clip-path: polygon(0 0, 40% 0, 40% 51%, 0 51%);
+        left:0;
+        top:0;
+      }
+      &:first-of-type::after {
+        clip-path: polygon(100% 0, 40% 0, 40% 51%, 100% 51%);
+        right:0;
+        top:0;
+      }
+      &:last-of-type::before {
+        clip-path: polygon(100% 50%, 60% 50%, 60% 100%, 100% 100%);
+        bottom:0;
+        right:0;
+      }
+      &:last-of-type::after {
+        clip-path: polygon(0 50%, 60% 50%, 60% 100%, 0 100%);
+        bottom:0;
+        left:0;
+      }
+    }
+    & > span {
+      position:absolute;
+      z-index:1;
+      display:flex;
+      justify-content:flex-start;
+      align-items:center;
+      gap:2em;
+      transition:opacity 1s ease 1s;
+      left:var(--p);
+      bottom:Var(--p);
+      width:calc(100% - (var(--p) * 2));
+      & span {
+        font-size:4em;
+        color:var(--ac1);
+      }
+      & > i {
+        font:var(--txs) var(--txf);
+        text-align:justify;
+        text-align-last:left;
+        & br { display:inline; }
+      }
+    }
+  }
+  & > div:last-of-type {
+    background:var(--bc2);
+    background-size:cover;
+    background-position:center;
+    text-align:justify;
+    text-align-last:center;
+    place-content:center;
+    opacity:0;
+    transition:ease 3s;
+    &::before {
+      background:var(--fl2);
+      mix-blend-mode:var(--fle2);
+      backdrop-filter:var(--fil2);
+    }
+    & > span {
+    position:relative;
+    z-index:3;
+    font-size:4em;
+    margin-bottom:.2em;
+    display:block;
+    }
+    & > em {
+      max-width:50%;
+      display:block;
+      position:relative;
+      font:var(--txs) var(--txf);
+      z-index:3;
+      margin-inline:auto;
+      height:fit-content;
+      & br { display:inline; }
+    }
+  }
+  
+  &:hover {
+  outline:var(--br3);
+    & > div:first-of-type {
+    outline:var(--br3);
+    & > span {
+      opacity:0;
+      transition:opacity ease 1s;
+    }
+    & > u {
+        &:first-of-type::before {
+      left:-100%;
+    }
+        &:first-of-type::after {
+      top:-100%;
+    }
+        &:last-of-type::after {
+      bottom:-100%;
+    }
+        &:last-of-type::before {
+      right:-100%;
+    }
+      }
+    }
+    & > div:last-of-type {
+      opacity:1;
+    }
+  }
+}
+
+.ncredit {
+  width: 400px;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  font-size: 10px;
+  text-decoration: none;
+  font: 8px verdana;
+  color:#aaa;
+}
+.tealeaf + br + .ncredit {
+  margin-top: -15px;
+}
+.ncredit:before {
+  content: "©";
+}
